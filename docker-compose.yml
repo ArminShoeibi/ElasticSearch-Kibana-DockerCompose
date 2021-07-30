@@ -1,0 +1,23 @@
+services:
+  ElasticSearchService:
+    image: elasticsearch:7.13.4
+    container_name: ElasticSearchContainer
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+    networks:
+      - ELKNetwork
+  KibanaService:
+    image: kibana:7.13.4
+    container_name: KibanaContainer
+    ports:
+      - "5601:5601"
+    environment:
+        - ELASTICSEARCH_HOSTS=http://ElasticSearchContainer:9200/
+    networks:
+      - ELKNetwork
+networks:
+  ELKNetwork:
+    
