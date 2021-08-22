@@ -1,6 +1,6 @@
 services:
   ElasticSearchService:
-    image: elasticsearch:7.13.4
+    image: elasticsearch:7.14.0
     container_name: ElasticSearchContainer
     ports:
       - "9200:9200"
@@ -10,7 +10,7 @@ services:
     networks:
       - ELKNetwork
   KibanaService:
-    image: kibana:7.13.4
+    image: kibana:7.14.0
     container_name: KibanaContainer
     ports:
       - "5601:5601"
