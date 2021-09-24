@@ -1,4 +1,5 @@
 services:
+#############################ElasticSearch###############################
   ElasticSearchService:
     image: elasticsearch:7.14.0
     container_name: ElasticSearchContainer
@@ -6,18 +7,22 @@ services:
       - "9200:9200"
       - "9300:9300"
     environment:
+      - xpack.security.enabled=false
       - discovery.type=single-node
     networks:
-      - ELKNetwork
+      - EKNetwork
+    restart: always
+#############################Kibana###############################
   KibanaService:
     image: kibana:7.14.0
     container_name: KibanaContainer
+    depends_on: ElasticSearchService
     ports:
       - "5601:5601"
     environment:
-        - ELASTICSEARCH_HOSTS=http://ElasticSearchContainer:9200/
+      - ELASTICSEARCH_HOSTS=http://ElasticSearchContainer:9200/
     networks:
-      - ELKNetwork
+      - EKNetwork
+    restart: always
 networks:
-  ELKNetwork:
-    
+  EKNetwork:
