@@ -1,5 +1,5 @@
 services:
-#############################ElasticSearch###############################
+############################# Elastic Search ###############################
   ElasticSearchService:
     image: elasticsearch:7.14.0
     container_name: ElasticSearchContainer
@@ -12,7 +12,7 @@ services:
     networks:
       - EKNetwork
     restart: always
-#############################Kibana###############################
+############################# Kibana ###############################
   KibanaService:
     image: kibana:7.14.0
     container_name: KibanaContainer
