@@ -1,7 +1,7 @@
 services:
 ############################# Elastic Search ###############################
   ElasticSearchService:
-    image: elasticsearch:7.14.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.2
     container_name: ElasticSearchContainer
     ports:
       - "9200:9200"
@@ -14,9 +14,10 @@ services:
     restart: always
 ############################# Kibana ###############################
   KibanaService:
-    image: kibana:7.14.1
+    image: docker.elastic.co/kibana/kibana:7.17.2
     container_name: KibanaContainer
-    depends_on: ElasticSearchService
+    depends_on:
+      - ElasticSearchService
     ports:
       - "5601:5601"
     environment:
